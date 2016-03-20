@@ -1,7 +1,7 @@
 FROM mattolson/base
 
-ENV RUBY_MAJOR 2.0
-ENV RUBY_VERSION 2.0.0-p643
+ENV RUBY_MAJOR 2.2
+ENV RUBY_VERSION 2.2.4
 
 RUN apt-get update &&\
 	apt-get install -y --no-install-recommends \
