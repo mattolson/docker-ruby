@@ -1,7 +1,8 @@
-FROM mattolson/base
+FROM mattolson/base:14.04
+# 1.9.3 is based on 10.04
 
-ENV RUBY_MAJOR 2.2
-ENV RUBY_VERSION 2.2.4
+ENV RUBY_MAJOR 2.0
+ENV RUBY_VERSION 2.0.0-p648
 
 RUN apt-get update &&\
 	apt-get install -y --no-install-recommends \
