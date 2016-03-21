@@ -5,24 +5,25 @@ ENV RUBY_MAJOR 2.0
 ENV RUBY_VERSION 2.0.0-p648
 
 RUN apt-get update &&\
-	apt-get install -y --no-install-recommends \
-  libffi-dev \
-  libgdbm-dev \
-  libncurses-dev \
-  libreadline6-dev \
-  libssl-dev \
-  libyaml-dev \
-  zlib1g-dev &&\
-	rm -rf /var/lib/apt/lists/* &&\
-	mkdir -p /usr/src/ruby &&\
-	curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" &&\
-	tar -xzf ruby.tar.gz -C /usr/src/ruby --strip-components=1 &&\
-	rm ruby.tar.gz &&\
-	cd /usr/src/ruby &&\
-	./configure --disable-install-doc &&\
-	make -j"$(nproc)" &&\
-	make install &&\
-	rm -r /usr/src/ruby
+	  apt-get install -y --no-install-recommends \
+      libffi-dev \
+      libgdbm-dev \
+      libncurses-dev \
+      libreadline6-dev \
+      libssl-dev \
+      libyaml-dev \
+      zlib1g-dev &&\
+	  apt-get clean
+
+RUN mkdir -p /usr/src/ruby &&\
+	  curl -fSL -o ruby.tar.gz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.gz" &&\
+	  tar -xzf ruby.tar.gz -C /usr/src/ruby --strip-components=1 &&\
+	  rm ruby.tar.gz &&\
+	  cd /usr/src/ruby &&\
+	  ./configure --disable-install-doc &&\
+	  make -j"$(nproc)" &&\
+	  make install &&\
+	  rm -rf /usr/src/ruby
 
 # skip installing gem documentation
 RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
