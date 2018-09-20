@@ -1,8 +1,7 @@
-FROM mattolson/base:14.04
-# 1.9.3 is based on 10.04
+FROM mattolson/base
 
-ENV RUBY_MAJOR 2.0
-ENV RUBY_VERSION 2.0.0-p648
+ENV RUBY_MAJOR 2.5
+ENV RUBY_VERSION 2.5.1
 
 RUN apt-get update &&\
 	  apt-get install -y --no-install-recommends \
@@ -11,6 +10,8 @@ RUN apt-get update &&\
       libncurses-dev \
       libreadline6-dev \
       libssl-dev \
+      # Note libssl 1.0 required for Ruby 2.3
+      #libssl1.0-dev \
       libyaml-dev \
       zlib1g-dev &&\
 	  apt-get clean
