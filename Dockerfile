@@ -1,7 +1,7 @@
 FROM mattolson/base
 
-ENV RUBY_MAJOR 2.5
-ENV RUBY_VERSION 2.5.1
+ENV RUBY_MAJOR 3.2
+ENV RUBY_VERSION 3.2.2
 
 RUN apt-get update &&\
 	  apt-get install -y --no-install-recommends \
@@ -10,8 +10,6 @@ RUN apt-get update &&\
       libncurses-dev \
       libreadline6-dev \
       libssl-dev \
-      # Note libssl 1.0 required for Ruby 2.3
-      #libssl1.0-dev \
       libyaml-dev \
       zlib1g-dev &&\
 	  apt-get clean
