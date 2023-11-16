@@ -34,5 +34,3 @@ ENV BUNDLE_PATH $GEM_HOME
 ENV BUNDLE_BIN $GEM_HOME/bin
 
 RUN gem install bundler pry
-
-ENTRYPOINT ["pry"]
