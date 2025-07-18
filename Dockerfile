@@ -1,7 +1,7 @@
 FROM mattolson/base
 
-ENV RUBY_MAJOR 3.2
-ENV RUBY_VERSION 3.2.2
+ENV RUBY_MAJOR=3.4
+ENV RUBY_VERSION=3.4.5
 
 RUN apt-get update &&\
 	  apt-get install -y --no-install-recommends \
@@ -27,10 +27,10 @@ RUN mkdir -p /usr/src/ruby &&\
 # skip installing gem documentation
 RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
 
-# install things globally, for great justice
-ENV GEM_HOME /usr/local/bundle
-ENV PATH $GEM_HOME/bin:$PATH
-ENV BUNDLE_PATH $GEM_HOME
-ENV BUNDLE_BIN $GEM_HOME/bin
+# install things globally in the container to avoid syncing massive number of files
+ENV GEM_HOME=/usr/local/bundle
+ENV PATH=$GEM_HOME/bin:$PATH
+ENV BUNDLE_PATH=$GEM_HOME
+ENV BUNDLE_BIN=$GEM_HOME/bin
 
 RUN gem install bundler pry
